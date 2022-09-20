@@ -1,3 +1,11 @@
+# Sections
+## Section2
+At this section we created mean-course project. At this project we build a form which listing posts. <br>
+There are three types of post listing method.<br>
+1-Normal Arrays <br>
+2-Using Post Service <br>
+3-With Event-Driven Approach, using RxJS, Observables<br>
+
 # MeanCourse
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 14.2.3.
