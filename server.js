@@ -19,6 +19,7 @@
 const http = require('http');
 const debug = require("debug")("node-angular");
 const app = require("./backend/app");
+//mongo password = sWPjddX2sC4UC7ny
 
 const normalizePort = val => {
     var port = parseInt(val, 10);
