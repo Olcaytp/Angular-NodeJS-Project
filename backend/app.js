@@ -1,3 +1,4 @@
+const path = require("path");
 const express = require('express');/*Require is the nodejs import syntax and this simply imports this package and stores its content */
 const bodyParser = require("body-parser");
 
@@ -5,6 +6,7 @@ const postsRoutes = require("./routes/posts");
 const app = express();
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
+app.use("/images", express.static(path.join("backend/images")));
 //mongo password = sWPjddX2sC4UC7ny
 
 // app.use((req, res, next) => {

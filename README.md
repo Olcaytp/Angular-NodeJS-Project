@@ -1,11 +1,28 @@
 # Sections
+
 ## Section2
 At this section we created mean-course project. At this project we build a form which listing posts. <br>
 There are three types of post listing method.<br>
 1-Normal Arrays <br>
 2-Using Post Service <br>
 3-With Event-Driven Approach, using RxJS, Observables<br>
-And we used Angular Materials 
+And we used Angular Materials<br> 
+
+## Section3
+Adding NodeJS to our Project<br>
+## Section4
+Working with the Mongodb<br>
+## Section5
+Enhancing the App<br>
+## Section6
+Adding image uploads to our app<br>
+## Section7
+Adding Pagination<br>
+## Section8
+
+## Section9
+
+## Section10
 
 # MeanCourse
 
