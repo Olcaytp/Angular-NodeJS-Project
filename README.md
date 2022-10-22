@@ -19,7 +19,7 @@ Adding image uploads to our app<br>
 ## Section7
 Adding Pagination<br>
 ## Section8
-
+Adding User Authentication<br>
 ## Section9
 
 ## Section10

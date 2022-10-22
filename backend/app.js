@@ -3,6 +3,7 @@ const express = require('express');/*Require is the nodejs import syntax and thi
 const bodyParser = require("body-parser");
 
 const postsRoutes = require("./routes/posts");
+const userRoutes = require("./routes/user");
 const app = express();
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
@@ -13,7 +14,7 @@ app.use("/images", express.static(path.join("backend/images")));
   //   console.log('First middleware');
   //   next();
   // });
-  
+
   // app.use((req, res, next) => {
     //   res.send('Hello from express!');
 // });
@@ -62,7 +63,7 @@ app.use("/images", express.static(path.join("backend/images")));
   //     posts: posts
   //   });
   // });
-  
+
 // module.exports = app;
 
 //After MongoDB installed and models created, we can now connect to the database.
@@ -87,7 +88,7 @@ app.use((req, res, next) => {
   );
   res.setHeader(
     'Access-Control-Allow-Headers',
-    'Origin, X-Requested-With, Content-Type, Accept'
+    'Origin, X-Requested-With, Content-Type, Accept, Authorization'
   );
   res.setHeader(
     'Access-Control-Allow-Methods',
@@ -97,6 +98,6 @@ app.use((req, res, next) => {
 });
 
 app.use("/api/posts", postsRoutes);
-
+app.use("/api/user", userRoutes);
 
 module.exports = app;
