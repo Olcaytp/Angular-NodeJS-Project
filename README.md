@@ -26,7 +26,7 @@ Adding User Authentication<br>
 
 # MeanCourse
 <img
-  src="src\assets\images\post.png"
+  src="src\assets\post.png"
   alt="Post Book"
   title="Optional title"
   style="display: inline-block; margin: 0 auto; max-width: 300px">
