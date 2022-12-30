@@ -146,7 +146,8 @@ export class PostsService {
                 title: post.title,
                 content: post.content,
                 id: post._id,
-                imagePath: post.imagePath
+                imagePath: post.imagePath,
+                creator: post.creator
               };
             }),
             maxPosts: postData.maxPosts
@@ -154,6 +155,7 @@ export class PostsService {
         })
       )
       .subscribe(transformedPostData => {
+        console.log(transformedPostData);
         this.posts = transformedPostData.posts;
         this.postsUpdated.next({
           posts: [...this.posts],
@@ -171,6 +173,7 @@ export class PostsService {
       title: string;
       content: string;
       imagePath: string;
+      creator: string;
     }>(
       "http://localhost:3000/api/posts/" + id
     );
@@ -283,7 +286,12 @@ updatePost(id: string, title: string, content: string, image: File | string) {
 }
 */
 
-updatePost(id: string, title: string, content: string, image: File | string) {
+updatePost(
+  id: string,
+  title: string,
+  content: string,
+  image: File | string
+  ) {
   let postData: Post | FormData;
   if (typeof image === "object") {
     postData = new FormData();
@@ -296,7 +304,8 @@ updatePost(id: string, title: string, content: string, image: File | string) {
       id: id,
       title: title,
       content: content,
-      imagePath: image
+      imagePath: image,
+      creator: null
     };
   }
   this.http

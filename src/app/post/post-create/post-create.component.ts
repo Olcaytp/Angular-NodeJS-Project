@@ -1,6 +1,8 @@
-import { Component, EventEmitter, Output } from "@angular/core";
+import { Component, EventEmitter, OnDestroy, OnInit, Output } from "@angular/core";
 import { FormControl, FormGroup, NgForm, Validators } from "@angular/forms";
 import { ActivatedRoute, ParamMap } from "@angular/router";
+import { Subscription } from "rxjs";
+import { AuthService } from "src/app/auth/auth.service";
 import { Post } from "src/app/post.model";
 import { PostsService } from "../posts.service";
 import { mimeType } from "./mime-type.validator";
@@ -34,7 +36,7 @@ import { mimeType } from "./mime-type.validator";
 //     enteredTitle = "";
 //     enteredContent = "";
 //     @Output() postCreated = new EventEmitter<Post>();
-  
+
 //     onAddPost(form: NgForm) {
 //       if (form.invalid) {
 //         return;
@@ -48,7 +50,7 @@ import { mimeType } from "./mime-type.validator";
 // }
 
 //-----------------------------------------------------------------------------------------
-//After PostService 
+//After PostService
 
 /*
 export class PostCreateComponent {
@@ -65,7 +67,7 @@ export class PostCreateComponent {
   }
 }
 */
-//After RxJS 
+//After RxJS
 /*
 export class PostCreateComponent {
   enteredTitle = "";
@@ -114,7 +116,7 @@ export class PostCreateComponent {
 */
 
 //Forms Changed to Reactive Forms
-export class PostCreateComponent {
+export class PostCreateComponent implements OnInit, OnDestroy {
   enteredTitle = "";
   enteredContent = "";
   post: Post;
@@ -123,18 +125,25 @@ export class PostCreateComponent {
   imagePreview: string;
   private mode = "create";
   private postId: string;
+  private authStatusSub: Subscription;
 
   constructor(
-    public postsService: PostsService, 
-    public route: ActivatedRoute 
+    public postsService: PostsService,
+    public route: ActivatedRoute,
+    private authService: AuthService
     ) {}
 
   ngOnInit() {
+    this.authStatusSub = this.authService
+      .getAuthStatusListener()
+      .subscribe(authStatus => {
+        this.isLoading = false;
+      });
     this.form = new FormGroup({
       title: new FormControl(null, {
         validators: [Validators.required, Validators.minLength(3)]
       }),
-      content: new FormControl(null, { validators: [Validators.required] 
+      content: new FormControl(null, { validators: [Validators.required]
       }),
       image: new FormControl(null, {
         validators: [Validators.required],
@@ -152,7 +161,8 @@ export class PostCreateComponent {
             id: postData._id,
             title: postData.title,
             content: postData.content,
-            imagePath: postData.imagePath
+            imagePath: postData.imagePath,
+            creator: postData.creator
           };
           this.form.setValue({
             title: this.post.title,
@@ -185,7 +195,7 @@ export class PostCreateComponent {
     this.isLoading = true;
     if (this.mode === "create") {
       this.postsService.addPost(
-        this.form.value.title, 
+        this.form.value.title,
         this.form.value.content,
         this.form.value.image
         );
@@ -198,5 +208,9 @@ export class PostCreateComponent {
       );
     }
     this.form.reset();
+  }
+
+  ngOnDestroy() {
+    this.authStatusSub.unsubscribe();
   }
 }

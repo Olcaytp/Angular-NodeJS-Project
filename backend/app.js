@@ -1,14 +1,8 @@
-const path = require("path");
-const express = require('express');/*Require is the nodejs import syntax and this simply imports this package and stores its content */
-const bodyParser = require("body-parser");
+const Post = require('./models/post');
 
-const postsRoutes = require("./routes/posts");
-const userRoutes = require("./routes/user");
-const app = express();
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: false }));
-app.use("/images", express.static(path.join("backend/images")));
+
 //mongo password = sWPjddX2sC4UC7ny
+
 
 // app.use((req, res, next) => {
   //   console.log('First middleware');
@@ -68,9 +62,15 @@ app.use("/images", express.static(path.join("backend/images")));
 
 //After MongoDB installed and models created, we can now connect to the database.
 
-const Post = require('./models/post');
+const path = require("path");
+const express = require('express');/*Require is the nodejs import syntax and this simply imports this package and stores its content */
+const bodyParser = require("body-parser");
 const mongoose = require("mongoose");
 //Connecting our Node Express App to MongoDB- Lesson 53
+const postsRoutes = require("./routes/posts");
+const userRoutes = require("./routes/user");
+
+const app = express();
 mongoose
   .connect(
     "mongodb+srv://Olcaytp:sWPjddX2sC4UC7ny@cluster0.udz79c9.mongodb.net/node-angular?retryWrites=true&w=majority"
@@ -81,6 +81,10 @@ mongoose
   .catch(() => {
     console.log("Connection failed!");
   });
+
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use("/images", express.static(path.join("backend/images")));
 
 app.use((req, res, next) => {
   res.setHeader(
