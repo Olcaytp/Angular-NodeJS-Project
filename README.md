@@ -1,6 +1,6 @@
 # Angular - NodeJS Post Book
 <img
-  src="src\assets\post.png"
+  src="src\assets\Post-Book.png"
   alt="Post Book"
   title="Optional title"
   style="display: inline-block; margin: 0 auto; max-width: 300px">
