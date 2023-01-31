@@ -1,3 +1,10 @@
+# Angular - NodeJS Post Book
+<img
+  src="src\assets\post.png"
+  alt="Post Book"
+  title="Optional title"
+  style="display: inline-block; margin: 0 auto; max-width: 300px">
+
 # Sections
 
 ## Section2
@@ -24,12 +31,7 @@ Adding User Authentication<br>
 
 ## Section10
 
-# MeanCourse
-<img
-  src="src\assets\post.png"
-  alt="Post Book"
-  title="Optional title"
-  style="display: inline-block; margin: 0 auto; max-width: 300px">
+
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 14.2.3.
 
